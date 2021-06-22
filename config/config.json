@@ -1,0 +1,18 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "oferta-comercial-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/ofertaComercial/OfertaComercialWebPart.js",
+          "manifest": "./src/webparts/ofertaComercial/OfertaComercialWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "OfertaComercialWebPartStrings": "lib/webparts/ofertaComercial/loc/{locale}.js"
+  }
+}
