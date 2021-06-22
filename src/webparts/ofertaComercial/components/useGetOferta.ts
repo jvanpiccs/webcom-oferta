@@ -15,9 +15,7 @@ export default function useGetOferta(options?: any) {
                 .select('Title', 'FileLeafRef', 'Pais', 'Desde', 'Hasta', 'Vigencia')
                 .filter(`Vigencia eq '${options.vigencia ? 'Vigente' : 'No vigente'}'`)
                 .orderBy(`${options.orderBy.key}`, options.orderBy.data)
-                .getAll().then(
-                    data => data.map((i) => {i.Desde = new Date(i.Desde)})
-                );
+                .getAll();
             console.log({ results });
             setResults(results);
             setIsLoading(false);

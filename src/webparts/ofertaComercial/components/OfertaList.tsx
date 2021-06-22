@@ -14,6 +14,7 @@ export const OfertaList: React.FunctionComponent<IOfertaListProps> = (props: Rea
         // { key: 'Pais', name: 'Pais', fieldName: 'Pais', minWidth: 100, maxWidth: 200, isResizable: true },
         { key: 'Desde', name: 'Desde', fieldName: 'Desde', minWidth: 100, maxWidth: 200, isResizable: true },
         { key: 'Hasta', name: 'Hasta', fieldName: 'Hasta', minWidth: 100, maxWidth: 200, isResizable: true },
+        { key: 'Actions', name: 'Actions', fieldName: 'Actions', minWidth: 100, maxWidth: 200, isResizable: true },
     ];
 
     const onItemInvoked = (item: any): void => {

@@ -1,7 +1,7 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/spfx/client-side-web-part-manifest.schema.json",
   "id": "c0fe708b-2513-41fa-acdc-e73fcbe4e082",
-  "alias": "OfertaComercialWebPart",
+  "alias": "OfertaComercialyEquiposWebPart",
   "componentType": "WebPart",
 
   // The "*" signifies that the version should be taken from the package.json
@@ -18,8 +18,8 @@
   "preconfiguredEntries": [{
     "groupId": "5c03119e-3074-46fd-976b-c60198311f70", // Other
     "group": { "default": "Other" },
-    "title": { "default": "Oferta Comercial" },
-    "description": { "default": "Webpart para mostrar la oferta comercial de Webcom" },
+    "title": { "default": "Oferta Comercial y Equipos" },
+    "description": { "default": "Webpart para mostrar la oferta comercial y oferta de Equipos en de Webcom" },
     "officeFabricIconFontName": "AppIconDefault",
     "properties": {
       "description": "Oferta Comercial y Equipos"
