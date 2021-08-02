@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { Separator, Stack, Label, Text, SearchBox, Toggle, Dropdown, DatePicker, IconButton } from "@fluentui/react";
+import { Stack, Label, Text, SearchBox, Toggle, Dropdown, DatePicker, IconButton } from "@fluentui/react";
 import { OfertaList } from './OfertaList';
 
 import useGetOferta from './useGetOferta';
@@ -19,8 +19,8 @@ export const Oferta: React.FunctionComponent<IOfertaProps> = (props: React.Props
 
     return (
         <>
-            <Stack horizontal tokens={{ childrenGap: 5 }}>
-                <Stack style={{ width: 170 }}>
+            <Stack horizontal tokens={{ childrenGap: 10 }}>
+                <Stack>
                     <Stack>
                         <Label>Ofertas</Label>
                         <Text>{results.length} resultados</Text>
@@ -88,7 +88,6 @@ export const Oferta: React.FunctionComponent<IOfertaProps> = (props: React.Props
                         }
                     </Stack>
                 </Stack>
-                <Separator vertical />
                 <Stack>
                     <OfertaList items={filteredResults} />
                 </Stack>
