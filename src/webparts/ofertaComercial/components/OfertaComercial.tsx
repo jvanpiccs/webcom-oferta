@@ -32,7 +32,7 @@ export const OfertaComercial: React.FunctionComponent<IOfertaComercialProps> = (
   return (
     <Stack style={{ backgroundColor: semanticColors.bodyBackground }}>
       <Selectors {...selectors} />
-      <Results results={results} isLoading={isLoading} type={type}/>
+      <Results results={results} isLoading={isLoading} type={type} vigencia={vigencia}/>
     </Stack>
   );
 };

@@ -3,29 +3,38 @@ import {
   DetailsList,
   IColumn,
   Icon,
-  List,
+  IconButton,
+  Panel,
+  PrimaryButton,
   SelectionMode,
   Spinner,
   Stack,
   Text,
 } from '@fluentui/react';
-import { ItemVersions } from '@pnp/sp/items';
 
-const flags: any[] = [
-  { pais: 'Argentina', flag: '../assets/Flag_of_Argentina.svg' },
-  { pais: 'Paraguay', flag: '../assets/Flag_of_Paraguay.svg' },
-  { pais: 'Uruguay', flag: '../assets/Flag_of_Uruguay.svg' },
-];
-
+import { useBoolean } from '@fluentui/react-hooks';
+import { useState } from 'react';
+import { DefaultButton, PanelType } from 'office-ui-fabric-react';
 export interface IResultsProps {
   results?: any[];
   isLoading: boolean;
   type: any;
+  vigencia: any;
 }
 
 export const Results: React.FunctionComponent<IResultsProps> = (
   props: React.PropsWithChildren<IResultsProps>
 ) => {
+  const [isOpen, { setTrue: openPanel, setFalse: dismissPanel }] =
+    useBoolean(false);
+  const [document, setDocument] = useState(props.results[0]);
+
+  function download(fileUrl, fileName) {
+    var a = document.createElement('a');
+    a.href = fileUrl;
+    a.setAttribute('download', fileName);
+    a.click();
+  }
 
   const columns: IColumn[] = [
     {
@@ -34,8 +43,15 @@ export const Results: React.FunctionComponent<IResultsProps> = (
       fieldName: 'Pais',
       minWidth: 30,
       maxWidth: 30,
-      onRender: (item) => {   
-        return <img src={require(`../assets/Flag_of_${item.Pais}.svg`)} width='20px' />;
+      onRender: (item) => {
+        return (
+          <Stack verticalAlign='center' verticalFill>
+            <img
+              src={require(`../assets/Flag_of_${item.Pais}.svg`)}
+              width='20px'
+            />
+          </Stack>
+        );
       },
     },
     {
@@ -46,9 +62,39 @@ export const Results: React.FunctionComponent<IResultsProps> = (
       minWidth: 100,
       isResizable: true,
       onRender: (item) => (
-        <Text aria-label={item.FileLeafRef}>
-          {item.Title || item.FileLeafRef}
-        </Text>
+        <Stack
+          horizontal
+          horizontalAlign='space-between'
+          verticalAlign='center'
+          verticalFill
+        >
+          <Stack style={{ maxWidth: '80%' }}>
+            <Text nowrap>{item?.Title}</Text>
+            <Text
+              nowrap
+              variant='xSmall'
+              className='ms-fontColor-neutralSecondaryAlt'
+            >
+              {item.FileLeafRef}
+            </Text>
+          </Stack>
+          <Stack horizontal>
+            {item.FileLeafRef.includes('pdf') ? (
+              <IconButton
+                iconProps={{ iconName: 'View' }}
+                onClick={() => {
+                  setDocument(item);
+                  openPanel();
+                }}
+              />
+            ) : null}
+            <IconButton
+              iconProps={{ iconName: 'Download' }}
+              download
+              href={item.FileRef}
+            />
+          </Stack>
+        </Stack>
       ),
     },
     {
@@ -59,10 +105,12 @@ export const Results: React.FunctionComponent<IResultsProps> = (
       isResizable: true,
       onRender: (item) =>
         item.Desde !== null ? (
-          <Text>
-            <Icon iconName='ChevronUpMed' className='ms-fontColor-green' />
-            {' ' + new Date(item.Desde).toLocaleDateString('es-Ar')}
-          </Text>
+          <Stack verticalAlign='center' verticalFill>
+            <Text>
+              <Icon iconName='ChevronUpMed' className='ms-fontColor-green' />
+              {' ' + new Date(item.Desde).toLocaleDateString('es-Ar')}
+            </Text>
+          </Stack>
         ) : null,
     },
     {
@@ -73,10 +121,12 @@ export const Results: React.FunctionComponent<IResultsProps> = (
       isResizable: true,
       onRender: (item) =>
         item.Hasta !== null ? (
-          <Text>
-            <Icon iconName='ChevronDownMed' className='ms-fontColor-red' />
-            {' ' + new Date(item.Hasta).toLocaleDateString('es-Ar')}
-          </Text>
+          <Stack verticalAlign='center' verticalFill>
+            <Text>
+              <Icon iconName='ChevronDownMed' className='ms-fontColor-red' />
+              {' ' + new Date(item.Hasta).toLocaleDateString('es-Ar')}
+            </Text>
+          </Stack>
         ) : null,
     },
   ];
@@ -89,19 +139,37 @@ export const Results: React.FunctionComponent<IResultsProps> = (
         ) : (
           <>
             <Text style={{ marginTop: 10 }}>
-              {props.type?.text} ({props.results?.length})
+              {props.type?.text} {props.vigencia?.text} ({props.results?.length}
+              )
             </Text>
             <DetailsList
               items={props.results}
-              compact={true}
+              compact={false}
               columns={columns}
               selectionMode={SelectionMode.none}
-              // getKey={this._getKey}
               setKey='none'
-              // layoutMode={DetailsListLayoutMode.fixedColumns}
               isHeaderVisible={true}
-              // onItemInvoked={this._onItemInvoked}
             />
+            <Panel
+              isLightDismiss
+              isOpen={isOpen}
+              onDismiss={dismissPanel}
+              closeButtonAriaLabel='Cerrar'
+              type={PanelType.medium}
+              headerText={document?.Title}
+            >
+              <Text>{document?.FileLeafRef}</Text>
+              <iframe width='100%' height='400px' src={document?.FileRef} />
+              <Stack horizontal tokens={{ childrenGap: 5 }}>
+                <DefaultButton text={'Cerrar'} onClick={dismissPanel} />
+                <PrimaryButton
+                  download
+                  text={'Descargar'}
+                  iconProps={{ iconName: 'Download' }}
+                  href={document?.FileRef}
+                />
+              </Stack>
+            </Panel>
           </>
         )}
       </Stack>

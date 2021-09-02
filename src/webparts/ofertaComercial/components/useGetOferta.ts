@@ -16,7 +16,7 @@ export default function useGetOferta(options?:any) {
             console.log(`${options.sortBy.data.field}`, options.sortBy.data.value);
             console.log(`Vigencia eq '${options.vigencia.text}'`);
             let newResults: any[] = await sp.web.lists.getById(options.type.data).items
-                .select('Title', 'FileLeafRef', 'Pais', 'Desde', 'Hasta', 'Vigencia')
+                .select('Title', 'FileLeafRef', 'Pais', 'Desde', 'Hasta', 'Vigencia', 'FileRef')
                 .filter(`Vigencia eq '${options.vigencia.text}'`)
                 .orderBy(`'${options.sortBy.data.field}'`, options.sortBy.data.value)
                 .getAll();

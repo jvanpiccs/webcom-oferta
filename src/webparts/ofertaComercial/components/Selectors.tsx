@@ -68,7 +68,8 @@ export const Selectors: React.FunctionComponent<ISelectorsProps> = (
   props: React.PropsWithChildren<ISelectorsProps>
 ) => {
   const [settingsExpanded, setSettingsExpanded] = useState<boolean>(false);
-  const [isOpen, { setTrue: openPanel, setFalse: dismissPanel }] = useBoolean(false);
+  const [isOpen, { setTrue: openPanel, setFalse: dismissPanel }] =
+    useBoolean(false);
 
   return (
     <>
@@ -84,7 +85,7 @@ export const Selectors: React.FunctionComponent<ISelectorsProps> = (
         />
         <IconButton
           iconProps={{ iconName: 'CollapseMenu' }}
-          onClick={()=> openPanel()}
+          onClick={() => openPanel()}
         />
       </Stack>
       <Panel
@@ -101,16 +102,16 @@ export const Selectors: React.FunctionComponent<ISelectorsProps> = (
           onChange={(ev, option) => props.setType(option)}
         />
         <Dropdown
-          label='Ordenar'
-          options={optionsSortBy}
-          defaultSelectedKey={props.sortBy.key}
-          onChange={(ev, option) => props.setSortBy(option)}
-        />
-        <Dropdown
           label='Vigencia'
           options={optionsVigencia}
           defaultSelectedKey={'vigenciaTrue'}
           onChange={(ev, option) => props.setVigencia(option)}
+        />
+        <Dropdown
+          label='Ordenar'
+          options={optionsSortBy}
+          defaultSelectedKey={props.sortBy.key}
+          onChange={(ev, option) => props.setSortBy(option)}
         />
       </Panel>
     </>
