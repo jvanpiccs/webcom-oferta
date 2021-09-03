@@ -20,7 +20,7 @@
     "group": { "default": "Other" },
     "title": { "default": "Oferta Comercial y Equipos" },
     "description": { "default": "Webpart para mostrar la oferta comercial y oferta de Equipos en de Webcom" },
-    "officeFabricIconFontName": "AppIconDefault",
+    "officeFabricIconFontName": "PostUpdate",
     "properties": {
       "description": "Oferta Comercial y Equipos"
     }
