@@ -20,6 +20,7 @@ export interface IResultsProps {
   isLoading: boolean;
   type: any;
   vigencia: any;
+  sortBy:any;
 }
 
 export const Results: React.FunctionComponent<IResultsProps> = (
@@ -108,7 +109,7 @@ export const Results: React.FunctionComponent<IResultsProps> = (
           <Stack verticalAlign='center' verticalFill>
             <Text>
               <Icon iconName='ChevronUpMed' className='ms-fontColor-green' />
-              {' ' + new Date(item.Desde).toLocaleDateString('es-Ar')}
+              {' ' + item.Desde.toLocaleDateString('es-AR')}
             </Text>
           </Stack>
         ) : null,
@@ -124,7 +125,7 @@ export const Results: React.FunctionComponent<IResultsProps> = (
           <Stack verticalAlign='center' verticalFill>
             <Text>
               <Icon iconName='ChevronDownMed' className='ms-fontColor-red' />
-              {' ' + new Date(item.Hasta).toLocaleDateString('es-Ar')}
+              {' ' + item.Hasta.toLocaleDateString('es-AR')}
             </Text>
           </Stack>
         ) : null,
@@ -139,8 +140,7 @@ export const Results: React.FunctionComponent<IResultsProps> = (
         ) : (
           <>
             <Text style={{ marginTop: 10 }}>
-              {props.type?.text} {props.vigencia?.text} ({props.results?.length}
-              )
+              Resultados {props.results?.length}
             </Text>
             <DetailsList
               items={props.results}

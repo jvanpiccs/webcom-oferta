@@ -1,9 +1,7 @@
 import {
   Dropdown,
-  IconButton,
   IDropdownOption,
   ISearchBoxStyles,
-  MotionAnimations,
   SearchBox,
   Stack,
   Panel,
@@ -51,8 +49,6 @@ export const optionsVigencia: IDropdownOption[] = [
   { key: 'vigenciaFalse', text: 'No vigente' },
 ];
 
-const searchBoxStyles: Partial<ISearchBoxStyles> = { root: { width: 300 } };
-
 export interface ISelectorsProps {
   queryText: string;
   setQueryText: any;
@@ -79,41 +75,26 @@ export const Selectors: React.FunctionComponent<ISelectorsProps> = (
         className='ms-bgColor-gray30'
       >
         <SearchBox
-          styles={searchBoxStyles}
+          style={{ width: '100%', flexGrow: 1 }}
           placeholder='Buscar'
           onChange={(_, newValue) => props.setQueryText(newValue)}
         />
-        <IconButton
-          iconProps={{ iconName: 'CollapseMenu' }}
-          onClick={() => openPanel()}
-        />
-      </Stack>
-      <Panel
-        isLightDismiss
-        isOpen={isOpen}
-        onDismiss={dismissPanel}
-        closeButtonAriaLabel='Cerrar'
-        headerText='Configuración'
-      >
         <Dropdown
-          label='Tipo'
           options={optionsType}
           defaultSelectedKey={props.type.key}
           onChange={(ev, option) => props.setType(option)}
         />
         <Dropdown
-          label='Vigencia'
           options={optionsVigencia}
           defaultSelectedKey={'vigenciaTrue'}
           onChange={(ev, option) => props.setVigencia(option)}
         />
         <Dropdown
-          label='Ordenar'
           options={optionsSortBy}
           defaultSelectedKey={props.sortBy.key}
           onChange={(ev, option) => props.setSortBy(option)}
         />
-      </Panel>
+      </Stack>
     </>
   );
 };

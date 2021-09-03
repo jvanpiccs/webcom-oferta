@@ -23,16 +23,36 @@ export const OfertaComercial: React.FunctionComponent<IOfertaComercialProps> = (
   const [vigencia, setVigencia] = useState<any>(optionsVigencia[0]);
   const [sortBy, setSortBy] = useState<any>(optionsSortBy[1]);
 
-  const selectors = {queryText, setQueryText, type, setType, vigencia, setVigencia, sortBy, setSortBy};
+  const selectors = {
+    queryText,
+    setQueryText,
+    type,
+    setType,
+    vigencia,
+    setVigencia,
+    sortBy,
+    setSortBy,
+  };
   console.log(selectors);
-  
-  const {results, isLoading } = useGetResults({type, vigencia, sortBy, queryText});
-  console.log(results);
+
+  const { results, isLoading } = useGetResults({
+    type,
+    vigencia,
+    sortBy,
+    queryText,
+  });
+  // console.log(results);
 
   return (
     <Stack style={{ backgroundColor: semanticColors.bodyBackground }}>
       <Selectors {...selectors} />
-      <Results results={results} isLoading={isLoading} type={type} vigencia={vigencia}/>
+      <Results
+        results={results}
+        isLoading={isLoading}
+        type={type}
+        vigencia={vigencia}
+        sortBy={sortBy}
+      />
     </Stack>
   );
 };
