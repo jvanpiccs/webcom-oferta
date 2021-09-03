@@ -33,7 +33,7 @@ export const OfertaComercial: React.FunctionComponent<IOfertaComercialProps> = (
     sortBy,
     setSortBy,
   };
-  console.log(selectors);
+  // console.log(selectors);
 
   const { results, isLoading } = useGetResults({
     type,

@@ -33,16 +33,15 @@ export const Results: React.FunctionComponent<IResultsProps> = (
       fieldName: 'Pais',
       minWidth: 30,
       maxWidth: 30,
-      onRender: (item) => {
-        return (
+      onRender: (item) =>
+        item.Pais !== null ? (
           <Stack verticalAlign='center' verticalFill>
             <img
               src={require(`../assets/Flag_of_${item.Pais}.svg`)}
               width='20px'
             />
           </Stack>
-        );
-      },
+        ) : null,
     },
     {
       key: 'column1',
@@ -71,7 +70,7 @@ export const Results: React.FunctionComponent<IResultsProps> = (
           <Stack horizontal>
             {item.FileLeafRef.includes('pdf') ? (
               <IconButton
-              target='blank'
+                target='blank'
                 data-interception='off'
                 href={item?.FileRef}
                 iconProps={{ iconName: 'View' }}

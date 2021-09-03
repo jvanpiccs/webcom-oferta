@@ -38,7 +38,7 @@ export default function useGetOferta(options?: any) {
           )
         )
         .then((response) => {
-          console.log(options.sortBy.data.field, options.sortBy.data.value);
+          // console.log(options.sortBy.data.field, options.sortBy.data.value);
           response.map((i) => {
             i.Desde = i?.Desde == null ? null : new Date(i?.Desde);
             i.Hasta = i?.Hasta == null ? null : new Date(i?.Hasta);
@@ -54,7 +54,7 @@ export default function useGetOferta(options?: any) {
                 b[options.sortBy.data.field] - a[options.sortBy.data.field]
             );
           }
-          console.log({ response });
+          // console.log({ response });
           return response;
         });
       setResults(await newResults);
