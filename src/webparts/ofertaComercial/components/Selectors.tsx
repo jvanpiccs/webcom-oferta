@@ -4,11 +4,8 @@ import {
   ISearchBoxStyles,
   SearchBox,
   Stack,
-  Panel,
 } from '@fluentui/react';
 import * as React from 'react';
-import { useState } from 'react';
-import { useBoolean } from '@fluentui/react-hooks';
 
 export const optionsType: IDropdownOption[] = [
   {
@@ -33,16 +30,16 @@ export const optionsSortBy: IDropdownOption[] = [
     text: 'De más nuevo a más antiguo',
     data: { field: 'Desde', value: false },
   },
-  {
-    key: 'sortAscTitle',
-    text: 'De la A a la Z',
-    data: { field: 'Title', value: true },
-  },
-  {
-    key: 'sortDescTitle',
-    text: 'De la Z a la A',
-    data: { field: 'Title', value: false },
-  },
+  // {
+  //   key: 'sortAscTitle',
+  //   text: 'De la A a la Z',
+  //   data: { field: 'Title', value: true },
+  // },
+  // {
+  //   key: 'sortDescTitle',
+  //   text: 'De la Z a la A',
+  //   data: { field: 'Title', value: false },
+  // },
 ];
 export const optionsVigencia: IDropdownOption[] = [
   { key: 'vigenciaTrue', text: 'Vigente' },
@@ -63,22 +60,14 @@ export interface ISelectorsProps {
 export const Selectors: React.FunctionComponent<ISelectorsProps> = (
   props: React.PropsWithChildren<ISelectorsProps>
 ) => {
-  const [settingsExpanded, setSettingsExpanded] = useState<boolean>(false);
-  const [isOpen, { setTrue: openPanel, setFalse: dismissPanel }] =
-    useBoolean(false);
-
   return (
     <>
       <Stack
+        wrap
         horizontal
-        tokens={{ childrenGap: 10 }}
+        tokens={{ childrenGap: 10, maxWidth: '100%' }}
         className='ms-bgColor-gray30'
       >
-        <SearchBox
-          style={{ width: '100%', flexGrow: 1 }}
-          placeholder='Buscar'
-          onChange={(_, newValue) => props.setQueryText(newValue)}
-        />
         <Dropdown
           options={optionsType}
           defaultSelectedKey={props.type.key}
@@ -89,6 +78,13 @@ export const Selectors: React.FunctionComponent<ISelectorsProps> = (
           defaultSelectedKey={'vigenciaTrue'}
           onChange={(ev, option) => props.setVigencia(option)}
         />
+        <Stack style={{width:200}}>
+          <SearchBox
+            style={{width:'100%', flexGrow:2}}
+            placeholder='Buscar'
+            onChange={(_, newValue) => props.setQueryText(newValue)}
+          />
+        </Stack>
         <Dropdown
           options={optionsSortBy}
           defaultSelectedKey={props.sortBy.key}

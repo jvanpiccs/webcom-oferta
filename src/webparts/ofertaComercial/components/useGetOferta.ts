@@ -38,26 +38,25 @@ export default function useGetOferta(options?: any) {
           )
         )
         .then((response) => {
+          console.log(options.sortBy.data.field, options.sortBy.data.value);
           response.map((i) => {
             i.Desde = i?.Desde == null ? null : new Date(i?.Desde);
             i.Hasta = i?.Hasta == null ? null : new Date(i?.Hasta);
           });
-          if (options.sortBy.data.value == true) {
-            response.sort((a, b) => {
-              return (
+          if (options.sortBy.data.value === true) {
+            response.sort(
+              (a, b) =>
                 a[options.sortBy.data.field] - b[options.sortBy.data.field]
-              );
-            });
+            );
           } else {
-            response.sort((a, b) => {
-              return (
+            response.sort(
+              (a, b) =>
                 b[options.sortBy.data.field] - a[options.sortBy.data.field]
-              );
-            });
+            );
           }
+          console.log({ response });
           return response;
         });
-      // console.log(newResults);
       setResults(await newResults);
       setIsLoading(false);
     }
