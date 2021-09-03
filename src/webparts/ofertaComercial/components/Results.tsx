@@ -20,23 +20,12 @@ export interface IResultsProps {
   isLoading: boolean;
   type: any;
   vigencia: any;
-  sortBy:any;
+  sortBy: any;
 }
 
 export const Results: React.FunctionComponent<IResultsProps> = (
   props: React.PropsWithChildren<IResultsProps>
 ) => {
-  const [isOpen, { setTrue: openPanel, setFalse: dismissPanel }] =
-    useBoolean(false);
-  const [document, setDocument] = useState(props.results[0]);
-
-  function download(fileUrl, fileName) {
-    var a = document.createElement('a');
-    a.href = fileUrl;
-    a.setAttribute('download', fileName);
-    a.click();
-  }
-
   const columns: IColumn[] = [
     {
       key: 'column0',
@@ -82,16 +71,17 @@ export const Results: React.FunctionComponent<IResultsProps> = (
           <Stack horizontal>
             {item.FileLeafRef.includes('pdf') ? (
               <IconButton
+              target='blank'
+                data-interception='off'
+                href={item?.FileRef}
                 iconProps={{ iconName: 'View' }}
-                onClick={() => {
-                  setDocument(item);
-                  openPanel();
-                }}
               />
             ) : null}
             <IconButton
+              download
+              data-interception='off'
+              href={item.FileRef}
               iconProps={{ iconName: 'Download' }}
-              href={`https://claroaup.sharepoint.com/sites/webcom/_layouts/download.aspx?SourceUrl=${item?.FileRef}`}
             />
           </Stack>
         </Stack>
@@ -149,25 +139,6 @@ export const Results: React.FunctionComponent<IResultsProps> = (
               setKey='none'
               isHeaderVisible={true}
             />
-            <Panel
-              isLightDismiss
-              isOpen={isOpen}
-              onDismiss={dismissPanel}
-              closeButtonAriaLabel='Cerrar'
-              type={PanelType.medium}
-              headerText={document?.Title}
-            >
-              <Text>{document?.FileLeafRef}</Text>
-              <iframe width='100%' height='400px' src={document?.FileRef} />
-              <Stack horizontal tokens={{ childrenGap: 5 }}>
-                <DefaultButton text={'Cerrar'} onClick={dismissPanel} />
-                <PrimaryButton
-                  text={'Descargar'}
-                  iconProps={{ iconName: 'Download' }}
-                  href={`https://claroaup.sharepoint.com/sites/webcom/_layouts/download.aspx?SourceUrl=${document?.FileRef}`}
-                />
-              </Stack>
-            </Panel>
           </>
         )}
       </Stack>

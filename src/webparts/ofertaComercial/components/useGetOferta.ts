@@ -13,8 +13,6 @@ export default function useGetOferta(options?: any) {
   useEffect(() => {
     async function fetchData() {
       setIsLoading(true);
-      console.log(`${options.sortBy.data.field}`, options.sortBy.data.value);
-      console.log(`Vigencia eq '${options.vigencia.text}'`);
       let newResults: any[] = await sp.web.lists
         .getById(options.type.data)
         .items.select(
@@ -59,7 +57,7 @@ export default function useGetOferta(options?: any) {
           }
           return response;
         });
-      console.log(newResults);
+      // console.log(newResults);
       setResults(await newResults);
       setIsLoading(false);
     }
