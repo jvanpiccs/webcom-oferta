@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Stack } from '@fluentui/react';
+import { Depths, Stack, Text } from '@fluentui/react';
 import { IReadonlyTheme } from '@microsoft/sp-component-base';
 import { Selectors } from './Selectors';
 import useGetResults from './useGetOferta';
@@ -44,7 +44,8 @@ export const OfertaComercial: React.FunctionComponent<IOfertaComercialProps> = (
   // console.log(results);
 
   return (
-    <Stack style={{ backgroundColor: semanticColors.bodyBackground }}>
+    <Stack style={{ backgroundColor: semanticColors.bodyBackground, boxShadow:Depths.depth8, padding:20 }}>
+      <Text variant='large' style={{marginBottom:10}}>Oferta Comercial y Equipos</Text>
       <Selectors {...selectors} />
       <Results
         results={results}

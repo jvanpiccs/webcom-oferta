@@ -91,8 +91,7 @@ export const Results: React.FunctionComponent<IResultsProps> = (
             ) : null}
             <IconButton
               iconProps={{ iconName: 'Download' }}
-              download
-              href={item.FileRef}
+              href={`https://claroaup.sharepoint.com/sites/webcom/_layouts/download.aspx?SourceUrl=${item?.FileRef}`}
             />
           </Stack>
         </Stack>
@@ -163,10 +162,9 @@ export const Results: React.FunctionComponent<IResultsProps> = (
               <Stack horizontal tokens={{ childrenGap: 5 }}>
                 <DefaultButton text={'Cerrar'} onClick={dismissPanel} />
                 <PrimaryButton
-                  download
                   text={'Descargar'}
                   iconProps={{ iconName: 'Download' }}
-                  href={document?.FileRef}
+                  href={`https://claroaup.sharepoint.com/sites/webcom/_layouts/download.aspx?SourceUrl=${document?.FileRef}`}
                 />
               </Stack>
             </Panel>
