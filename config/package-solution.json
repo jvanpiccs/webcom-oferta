@@ -1,15 +1,15 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
   "solution": {
-    "name": "webcom-oferta-client-side-solution",
+    "name": "Webcom Oferta",
     "id": "eedcf497-7993-4a79-b6cb-e70c335ca822",
     "version": "1.0.0.0",
     "includeClientSideAssets": true,
     "skipFeatureDeployment": true,
     "isDomainIsolated": false,
     "developer": {
-      "name": "",
-      "websiteUrl": "",
+      "name": "Juan Picco",
+      "websiteUrl": "https://github.com/jvanpiccs/webcom-oferta",
       "privacyUrl": "",
       "termsOfUseUrl": "",
       "mpnId": ""
