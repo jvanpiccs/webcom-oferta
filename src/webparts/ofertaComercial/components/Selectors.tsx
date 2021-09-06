@@ -29,17 +29,7 @@ export const optionsSortBy: IDropdownOption[] = [
     key: 'sortDescDesde',
     text: 'De más nuevo a más antiguo',
     data: { field: 'Desde', value: false },
-  },
-  // {
-  //   key: 'sortAscTitle',
-  //   text: 'De la A a la Z',
-  //   data: { field: 'Title', value: true },
-  // },
-  // {
-  //   key: 'sortDescTitle',
-  //   text: 'De la Z a la A',
-  //   data: { field: 'Title', value: false },
-  // },
+  }
 ];
 export const optionsVigencia: IDropdownOption[] = [
   { key: 'vigenciaTrue', text: 'Vigente' },
@@ -66,7 +56,6 @@ export const Selectors: React.FunctionComponent<ISelectorsProps> = (
         wrap
         horizontal
         tokens={{ childrenGap: 10, maxWidth: '100%' }}
-        className='ms-bgColor-gray30'
       >
         <Dropdown
           options={optionsType}
