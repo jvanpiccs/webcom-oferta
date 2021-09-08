@@ -3,7 +3,6 @@ import * as ReactDom from 'react-dom';
 import { Version } from '@microsoft/sp-core-library';
 import {
   IPropertyPaneConfiguration,
-  PropertyPaneTextField
 } from '@microsoft/sp-property-pane';
 import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
 import {
@@ -12,8 +11,6 @@ import {
   IReadonlyTheme
 } from '@microsoft/sp-component-base';
 
-
-import * as strings from 'OfertaComercialWebPartStrings';
 import { OfertaComercial, IOfertaComercialProps } from './components/OfertaComercial';
 import { sp } from '@pnp/sp';
 
@@ -46,8 +43,7 @@ export default class OfertaComercialWebPart extends BaseClientSideWebPart<IOfert
     const element: React.ReactElement<IOfertaComercialProps> = React.createElement(
       OfertaComercial,
       {
-        themeVariant: this._themeVariant
-      }
+        themeVariant: this._themeVariant      }
     );
 
     ReactDom.render(element, this.domElement);
@@ -63,23 +59,7 @@ export default class OfertaComercialWebPart extends BaseClientSideWebPart<IOfert
 
   protected getPropertyPaneConfiguration(): IPropertyPaneConfiguration {
     return {
-      pages: [
-        {
-          header: {
-            description: strings.PropertyPaneDescription
-          },
-          groups: [
-            {
-              groupName: strings.BasicGroupName,
-              groupFields: [
-                PropertyPaneTextField('description', {
-                  label: strings.DescriptionFieldLabel
-                })
-              ]
-            }
-          ]
-        }
-      ]
+      pages: []
     };
   }
   private _handleThemeChangedEvent(args: ThemeChangedEventArgs): void {
